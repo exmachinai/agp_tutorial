@@ -468,15 +468,9 @@ function saveState() {
 
 function resetProgress() {
   if (confirm('Wirklich den gesamten Fortschritt zurücksetzen?')) {
-    STATE = defaultState();
-    saveState();
-    try { 
-      localStorage.removeItem('aegira_quiz_answers'); 
-      localStorage.removeItem('aegira_match_sel');
-      localStorage.removeItem('aegira_fe_r6_answers');
-      localStorage.removeItem('aegira_fe_r6_match');
-    } catch(e) {}
-    location.reload();
+    try { localStorage.clear(); } catch(e) {}
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui"><div style="text-align:center"><h2 style="color:#10B981">Fortschritt zurückgesetzt</h2><p>Seite wird neu geladen...</p></div></div>';
+    setTimeout(function(){ window.location.reload(true); }, 600);
   }
 }
 
