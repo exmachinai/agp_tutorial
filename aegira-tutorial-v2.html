@@ -3062,20 +3062,22 @@ function submitQuiz(day) {
 
 function resetQuiz(day) {
   const dayData = DAYS[day-1];
-  // Clear all MC answers for this day
+  // Clear ALL quiz answers and match selections for this day
   dayData.quizzes.forEach((q, qi) => {
     const key = day+'-'+qi;
     if (q.type === 'mc') delete quizAnswers[key];
     if (q.type === 'match') {
-      matchSelections[key] = {};
+      delete matchSelections[key];
     }
   });
+  currentMatch = {day:null, qi:null, side:null, idx:null};
   saveQuizAnswers();
   saveMatchSelections();
   // Remove from completed quizzes so points can be re-earned
   const quizId = 'quiz-day'+day;
   STATE.completedQuizzes = STATE.completedQuizzes.filter(q => q !== quizId);
   saveState();
+  // Force full re-render
   showDay(day);
   showToast('Quiz zurückgesetzt — beantworte die Fragen erneut.', 'info');
 }
