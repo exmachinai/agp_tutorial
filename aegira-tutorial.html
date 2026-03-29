@@ -2518,29 +2518,26 @@ function resetMatch(day, qi) {
   const dayData = DAYS[day-1];
   const q = dayData.quizzes[qi];
 
-  // Clear all visual states
+  // Clear all visual states AND inline styles (colors)
   for (let pi = 0; pi < q.pairs.length; pi++) {
     const leftEl = document.getElementById(`ml-${day}-${qi}-${pi}`);
     const rightEl = document.getElementById(`mr-${day}-${qi}-${pi}`);
-    if (leftEl) leftEl.className = 'match-item';
-    if (rightEl) rightEl.className = 'match-item';
+    if (leftEl) { leftEl.className = 'match-item'; leftEl.style.cssText = ''; leftEl.removeAttribute('style'); }
+    if (rightEl) { rightEl.className = 'match-item'; rightEl.style.cssText = ''; rightEl.removeAttribute('style'); }
   }
 
   // Reset selection state
   matchSelections[key] = {};
+  currentMatch = {day:null, qi:null, side:null, idx:null};
   saveMatchSelections();
 
   // Reset buttons and status
   const statusEl = document.getElementById(`match-status-${day}-${qi}`);
   const submitBtn = document.getElementById(`match-submit-${day}-${qi}`);
   const resetBtn = document.getElementById(`match-reset-${day}-${qi}`);
-  statusEl.textContent = '';
-  statusEl.className = 'match-status';
-  submitBtn.style.display = 'inline-block';
-  submitBtn.disabled = false;
-  submitBtn.textContent = 'Zuordnung prüfen';
-  submitBtn.style.opacity = '1';
-  resetBtn.style.display = 'none';
+  if (statusEl) { statusEl.textContent = ''; statusEl.className = 'match-status'; }
+  if (submitBtn) { submitBtn.style.display = 'inline-block'; submitBtn.disabled = false; submitBtn.textContent = 'Zuordnung prüfen'; submitBtn.style.opacity = '1'; }
+  if (resetBtn) { resetBtn.style.display = 'none'; }
 }
 
 function evaluateQuizResults(day) {
