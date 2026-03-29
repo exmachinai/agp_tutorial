@@ -865,11 +865,16 @@ const DAYS = [
 </ul>
 
 <h4>Claude Code — Die 7 Konfigurationsmechanismen</h4>
-<p>Claude Code (und damit auch Claude Cowork) verfügt über 7 Konfigurationsmechanismen, die wie Schichten funktionieren. Für das AGP-Projekt nutzen wir drei davon aktiv:</p>
-<table><tr><th>Mechanismus</th><th>Was es tut</th><th>AGP-Relevanz</th></tr>
-<tr><td><strong>CLAUDE.md</strong></td><td>Projektkontext-Datei im Repo</td><td>Enthält AGP-Architektur, Invarianten, Stack — wird ab Tag 4 vertieft</td></tr>
-<tr><td><strong>Slash Commands</strong></td><td>Schnellbefehle wie <code>/review</code>, <code>/commit</code></td><td>Beschleunigen Reviews und Standard-Workflows</td></tr>
-<tr><td><strong>Skills</strong></td><td>Wiederverwendbare Aufgaben-Templates</td><td>AGP-spezifische Skills für wiederkehrende Governance-Aufgaben</td></tr></table>
+<p>Claude Code (und damit auch Claude Cowork) verfügt über 7 Konfigurationsmechanismen, die wie Schichten funktionieren:</p>
+<table><tr><th>#</th><th>Mechanismus</th><th>Was es tut</th><th>AGP-Relevanz</th></tr>
+<tr><td>1</td><td><strong>CLAUDE.md</strong></td><td>Projektkontext-Datei im Repo — wird automatisch bei jedem Start geladen</td><td>Enthält AGP-Architektur, Invarianten, Stack — wird ab Tag 4 vertieft</td></tr>
+<tr><td>2</td><td><strong>Slash Commands</strong></td><td>Schnellbefehle wie <code>/review</code>, <code>/commit</code>, <code>/init</code></td><td>Beschleunigen Reviews und Standard-Workflows</td></tr>
+<tr><td>3</td><td><strong>Skills</strong></td><td>Wiederverwendbare Aufgaben-Templates mit spezialisierten Prompts</td><td>AGP-spezifische Skills für wiederkehrende Governance-Aufgaben</td></tr>
+<tr><td>4</td><td><strong>MCP Server</strong></td><td>Model Context Protocol — externe Tools und APIs anbinden</td><td>Integration von Sentinel, Purview, Azure AI und weiteren AGP-Diensten</td></tr>
+<tr><td>5</td><td><strong>Hooks</strong></td><td>Pre-/Post-Commit-Hooks für automatisierte Prüfungen</td><td>Automatische Compliance-Checks (Trivy, SBOM) bei jedem Commit</td></tr>
+<tr><td>6</td><td><strong>Settings</strong></td><td>Globale und projektspezifische Einstellungen (<code>.claude/settings.json</code>)</td><td>Team-weite Konfiguration für AGP-Entwicklungsumgebung</td></tr>
+<tr><td>7</td><td><strong>System Prompt</strong></td><td>Basis-Instruktionen, die das Verhalten von Claude steuern</td><td>Definiert Governance-Kontext und Compliance-Anforderungen als Grundlage</td></tr></table>
+<p><strong>Für das AGP-Projekt nutzen wir vor allem drei davon aktiv:</strong> CLAUDE.md (1), Slash Commands (2) und Skills (3). Die weiteren Mechanismen werden in späteren Tagen vertieft.</p>
 
 <div class="info-box note"><strong>Gut zu wissen:</strong> Claude Cowork erbt viele Fähigkeiten von Claude Code, macht sie aber über eine grafische Oberfläche zugänglich. Wenn DevOps von "Hooks" oder "MCP-Servern" spricht, weißt Du nach diesem Tutorial, was gemeint ist.</div>
 
